@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --brand-cream: #FAF5F1;
+    --brand-sand: #F3EEEA;
+    --brand-warm: #EFE8DE;
+    --brand-bronze: #97692D;
+    --brand-bronze-hover: #7D521F;
+    --brand-bronze-light: #B7874C;
+    --brand-dark: #1E1A17;
+    --brand-stone: #5C5550;
+    --brand-border: #E5DDD3;
+  }
+
+  body {
+    background-color: var(--brand-cream);
+    color: var(--brand-dark);
+    font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-cormorant), "Times New Roman", Times, Georgia, serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar for luxury aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF5F1;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8CEBE;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #97692D;
+}
+
+/* Subtle image zoom transition */
+.image-zoom-container {
+  overflow: hidden;
+}
+.image-zoom-container img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.image-zoom-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Star logo shape */
+.star-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  transition: all 0.4s ease;
 }
