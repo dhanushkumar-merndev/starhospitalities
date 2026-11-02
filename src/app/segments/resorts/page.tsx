@@ -169,3 +169,4 @@ export default function StarResortsPage() {
     </div>
   );
 }
+

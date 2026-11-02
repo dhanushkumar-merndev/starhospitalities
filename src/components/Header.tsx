@@ -266,3 +266,4 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
     </header>
   );
 }
+

@@ -38,9 +38,9 @@ export const SEGMENTS: SegmentInfo[] = [
     subtitle: "Hotels, Villas & Homestays",
     tagline: "Refined Sanctuaries for the Modern Traveler",
     description: "From cosmopolitan boutique retreats to secluded luxury villas, Star Stays curates bespoke accommodations that blend intuitive hospitality, architectural elegance, and residential comfort.",
-    cardImage: "/images/star-stays.jpg",
-    mobileThumb: "/images/thumb-stays.jpg",
-    heroImage: "/images/stays-hero.jpg",
+    cardImage: "/images/ai-star-stays.jpg",
+    mobileThumb: "/images/ai-star-stays.jpg",
+    heroImage: "/images/ai-star-stays.jpg",
     link: "/segments/stays",
     subcategories: [
       "Luxury Hotels",
@@ -64,9 +64,9 @@ export const SEGMENTS: SegmentInfo[] = [
     subtitle: "Luxury Resorts & Retreats",
     tagline: "Immersive Escapes in Nature's Grandest Landscapes",
     description: "Panoramic highland sanctuaries, oceanfront havens, and rainforest pavilions harmoniously woven into untouched natural topography for unhurried restoration.",
-    cardImage: "/images/star-resorts.jpg",
-    mobileThumb: "/images/thumb-resorts.jpg",
-    heroImage: "/images/resorts-hero.jpg",
+    cardImage: "/images/ai-star-resorts.jpg",
+    mobileThumb: "/images/ai-star-resorts.jpg",
+    heroImage: "/images/ai-star-resorts.jpg",
     link: "/segments/resorts",
     subcategories: [
       "Luxury Resorts",
@@ -89,9 +89,9 @@ export const SEGMENTS: SegmentInfo[] = [
     subtitle: "Restaurants, Cafés & Lounges",
     tagline: "Sensory Gastronomy Rooted in Provenance",
     description: "Culinary artistry elevated by master chefs, seasonal regional harvests, and evocative atmospheres that elevate every meal into a memorable sensory journey.",
-    cardImage: "/images/star-dining.jpg",
-    mobileThumb: "/images/thumb-dining.jpg",
-    heroImage: "/images/dining-hero.jpg",
+    cardImage: "/images/ai-star-dining.jpg",
+    mobileThumb: "/images/ai-star-dining.jpg",
+    heroImage: "/images/ai-star-dining.jpg",
     link: "/segments/dining",
     subcategories: [
       "Fine Dining",
@@ -114,9 +114,9 @@ export const SEGMENTS: SegmentInfo[] = [
     subtitle: "Weddings & Event Venues",
     tagline: "Moments of Grandeur, Celebrations of Distinction",
     description: "Spectacular venues, flawless orchestration, and bespoke event styling for fairytale destination weddings, executive conventions, and milestone celebrations.",
-    cardImage: "/images/star-events.jpg",
-    mobileThumb: "/images/thumb-events.jpg",
-    heroImage: "/images/events-hero.jpg",
+    cardImage: "/images/ai-star-events.jpg",
+    mobileThumb: "/images/ai-star-events.jpg",
+    heroImage: "/images/ai-star-events.jpg",
     link: "/segments/events",
     subcategories: [
       "Fairytale Weddings",
@@ -139,9 +139,9 @@ export const SEGMENTS: SegmentInfo[] = [
     subtitle: "Spa & Wellness Experiences",
     tagline: "Holistic Harmony for Mind, Body, and Spirit",
     description: "Deep rejuvenation rooted in authentic Ayurvedic wisdom, bespoke therapeutic rituals, tranquil open-air yoga shalas, and natural thermal healing.",
-    cardImage: "/images/star-wellness.jpg",
-    mobileThumb: "/images/thumb-wellness.jpg",
-    heroImage: "/images/wellness-hero.jpg",
+    cardImage: "/images/ai-star-wellness.jpg",
+    mobileThumb: "/images/ai-star-wellness.jpg",
+    heroImage: "/images/ai-star-wellness.jpg",
     link: "/segments/wellness",
     subcategories: [
       "Wellness Retreats",
@@ -164,9 +164,9 @@ export const SEGMENTS: SegmentInfo[] = [
     subtitle: "Adventure & Nature Stays",
     tagline: "Curated Journeys Beyond the Ordinary",
     description: "Pioneering luxury glamping under star-studded skies, guided wilderness safaris, and authentic cultural immersion designed for adventurous souls.",
-    cardImage: "/images/star-experiences.jpg",
-    mobileThumb: "/images/thumb-experiences.jpg",
-    heroImage: "/images/experiences-hero.jpg",
+    cardImage: "/images/ai-star-experiences.jpg",
+    mobileThumb: "/images/ai-star-experiences.jpg",
+    heroImage: "/images/ai-star-experiences.jpg",
     link: "/segments/experiences",
     subcategories: [
       "Adventure Expeditions",
@@ -189,9 +189,9 @@ export const SEGMENTS: SegmentInfo[] = [
     subtitle: "B2B Advisory & Management",
     tagline: "End-to-End Asset Value Creation",
     description: "Empowering hotel owners, developers, and institutional investors with comprehensive operational leadership, revenue growth strategies, and visionary development execution.",
-    cardImage: "/images/hospitality-solutions.jpg",
-    mobileThumb: "/images/solutions-consulting.jpg",
-    heroImage: "/images/solutions-hero.jpg",
+    cardImage: "/images/ai-hospitality-solutions.jpg",
+    mobileThumb: "/images/ai-hospitality-solutions.jpg",
+    heroImage: "/images/ai-hospitality-solutions.jpg",
     link: "/solutions",
     subcategories: [
       "Hospitality Management",
@@ -399,3 +399,4 @@ export const PROPERTIES: PropertyItem[] = [
     features: ["Astronomy Telescopes", "Private Dune Dining", "Camel & 4x4 Safaris", "Live Folk Performances"]
   }
 ];
+

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Building2, TrendingUp } from "lucide-react";
 
 interface CtaBannerProps {
   onOpenEnquiry?: () => void;
@@ -20,39 +20,75 @@ export default function CtaBanner({
   buttonText = "Connect with Us"
 }: CtaBannerProps) {
   return (
-    <section className="relative overflow-hidden bg-[#FAF5F1] border-t border-[#E5DDD3]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 sm:pb-16 text-center relative z-10">
-        <span className="text-[11px] sm:text-xs font-semibold tracking-[0.25em] text-[#97692D] uppercase block mb-2">
+    <section className="relative overflow-hidden bg-[#1E1A17] text-white">
+      {/* High-Resolution AI Generated Panoramic Mountain Landscape Backdrop */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/ai-mountains-banner.jpg"
+          alt="Panoramic Misty Mountain Highland at Golden Twilight"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-40 mix-blend-luminosity scale-105 transition-transform duration-1000 ease-out hover:scale-100"
+        />
+        {/* Multi-layered luxury gradients for depth and text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#141210]/95 via-[#1A1816]/85 to-[#141210]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#141210] via-transparent to-[#141210]" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
+        {/* Kicker */}
+        <span className="text-[11px] sm:text-xs font-semibold tracking-[0.28em] text-[#C59B58] uppercase block mb-3">
           {kicker}
         </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1E1A17] tracking-tight mb-3">
+
+        {/* Headline in grand serif */}
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white tracking-tight leading-[1.08] mb-4">
           {title}
         </h2>
-        <p className="text-sm sm:text-base text-[#5C5550] max-w-xl mx-auto mb-8 font-normal leading-relaxed">
+
+        {/* Subtitle */}
+        <p className="text-sm sm:text-base md:text-lg text-[#D8D0C6] max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
           {subtitle}
         </p>
 
-        <div className="inline-block">
+        {/* Interactive CTA Button */}
+        <div className="inline-block mb-12">
           <button
             onClick={onOpenEnquiry}
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#8C5E2D] hover:bg-[#774E23] text-white text-sm font-medium tracking-wide rounded-md shadow-md hover:shadow-lg transition-all duration-200 group"
+            className="inline-flex items-center gap-3 px-8 sm:px-9 py-4 bg-[#8C5E2D] hover:bg-[#A36F38] text-white text-sm sm:text-base font-medium tracking-wide rounded-md shadow-xl hover:shadow-2xl transition-all duration-300 group transform hover:-translate-y-0.5"
           >
             <span>{buttonText}</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
           </button>
         </div>
-      </div>
 
-      {/* Atmospheric misty mountain landscape at bottom matching reference */}
-      <div className="relative w-full h-36 sm:h-52 md:h-64 mt-4">
-        <Image
-          src="/images/bottom-cta.jpg"
-          alt="Misty Mountain Highland"
-          fill
-          className="object-cover object-top opacity-90"
-        />
-        {/* Soft gradient blend into top cream background */}
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[#FAF5F1]/30 to-[#FAF5F1]" />
+        {/* 3 Value Pillars Strip */}
+        <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
+          <div className="flex items-start gap-3.5 p-3 rounded-lg bg-white/5 backdrop-blur-xs border border-white/10">
+            <Building2 className="w-5 h-5 text-[#C59B58] shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-semibold text-white uppercase tracking-wider">Concept to Reality</div>
+              <p className="text-[11px] text-[#A89F95] mt-0.5">Turnkey development, space planning &amp; architectural advisory.</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3.5 p-3 rounded-lg bg-white/5 backdrop-blur-xs border border-white/10">
+            <ShieldCheck className="w-5 h-5 text-[#C59B58] shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-semibold text-white uppercase tracking-wider">Operational Rigour</div>
+              <p className="text-[11px] text-[#A89F95] mt-0.5">Full property management with 5-star service standards.</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3.5 p-3 rounded-lg bg-white/5 backdrop-blur-xs border border-white/10">
+            <TrendingUp className="w-5 h-5 text-[#C59B58] shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs font-semibold text-white uppercase tracking-wider">Yield Optimization</div>
+              <p className="text-[11px] text-[#A89F95] mt-0.5">Algorithmic RevPAR growth and long-term asset appreciation.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
