@@ -84,22 +84,18 @@ export default function HomePage() {
         {/* Directly reproducing desktop & mobile visual balance from Reference Images */}
         {/* ========================================================================= */}
         <section className="relative w-full min-h-[580px] lg:min-h-[680px] xl:min-h-[740px] flex items-center overflow-hidden bg-[#FAF5F1]">
-          {/* Full-Bleed Right Pavilion Image with Organic Soft Gradient Mask */}
-          <div
-            className="hidden lg:block absolute top-0 right-0 bottom-0 w-[58%] xl:w-[62%] h-full z-0 pointer-events-none select-none"
-            style={{
-              maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 8%, rgba(0,0,0,0.8) 25%, black 40%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 8%, rgba(0,0,0,0.8) 25%, black 40%)"
-            }}
-          >
+          {/* Full-Bleed Hero Background Image matching Reference Composition */}
+          <div className="hidden lg:block absolute inset-0 w-full h-full z-0 pointer-events-none select-none">
             <Image
               src="/images/hero-ai.jpg"
               alt="Star Hospitalities Luxury Hillside Pavilion and Infinity Pool Overlooking Misty Highland Valley"
               fill
               priority
-              sizes="62vw"
-              className="object-cover object-center"
+              sizes="100vw"
+              className="object-cover object-right xl:object-center"
             />
+            {/* Subtle soft gradient fade on left side for crisp text contrast */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FAF5F1] via-[#FAF5F1]/80 to-transparent to-55% xl:to-50%" />
           </div>
 
           {/* Left Text Content Container */}
