@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { Roboto, Roboto_Serif } from "next/font/google";
 import "./globals.css";
 
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "700"],
   style: ["normal", "italic"],
   display: "swap"
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const robotoSerif = Roboto_Serif({
+  variable: "--font-roboto-serif",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap"
 });
 
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     title: "Star Hospitalities — Creating Destinations. Delivering Experiences.",
     description:
       "A unified multi-segment hospitality group crafting premier destinations across luxury stays, resorts, gastronomy, events, wellness, and advisory solutions.",
-    images: [{ url: "/images/hero-cinematic.jpg", width: 1376, height: 768 }]
+    images: [{ url: "/images/hero-ai.jpg", width: 1376, height: 768 }]
   }
 };
 
@@ -49,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorantGaramond.variable} ${plusJakartaSans.variable} h-full antialiased`}
+      className={`${roboto.variable} ${robotoSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#FAF5F1] text-[#1E1A17] font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
         {children}
