@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto, Roboto_Serif } from "next/font/google";
 import "./globals.css";
+import "lenis/dist/lenis.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -53,7 +55,9 @@ export default function RootLayout({
       className={`${roboto.variable} ${robotoSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#FAF5F1] text-[#1E1A17] font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
