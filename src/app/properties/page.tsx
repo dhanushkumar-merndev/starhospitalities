@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBanner from "@/components/CtaBanner";
 import EnquiryModal from "@/components/EnquiryModal";
+import PageHero from "@/components/PageHero";
 import { PROPERTIES, PropertyItem } from "@/data/hospitalityData";
 
 export default function PropertiesPage() {
@@ -40,40 +41,43 @@ export default function PropertiesPage() {
     <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
       <Header onOpenEnquiry={() => setEnquiryOpen(true)} />
 
-      <main className="flex-grow pt-[68px]">
-        {/* Properties Hero */}
-        <section className="relative py-16 sm:py-24 bg-[#FAF5F1] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl space-y-4">
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-                CURATED PORTFOLIO
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1A17] tracking-tight leading-[1.1]">
-                Properties &amp; Destinations
-              </h1>
-              <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed max-w-2xl pt-2">
-                Explore our portfolio of luxury hotels, panoramic nature retreats, fine dining restaurants, wedding estates, and desert glamping camps across premier destinations.
-              </p>
-            </div>
+      <main className="flex-grow pt-[64px]">
+        {/* Properties Hero — Matching Home Hero Visual Architecture */}
+        <PageHero
+          kicker="CURATED PORTFOLIO"
+          titleLine1="Signature Properties."
+          titleLine2="Prime Destinations."
+          description="Explore our portfolio of luxury hotels, panoramic nature retreats, fine dining restaurants, wedding estates, and desert glamping camps across premier destinations."
+          imageSrc="/images/hero-ai.jpg"
+          imageAlt="Star Hospitalities Luxury Properties and Premier Destinations"
+          primaryCta={{
+            label: "Browse Collection",
+            href: "#collection"
+          }}
+          secondaryCta={{
+            label: "Enquire Availability",
+            onClick: () => setEnquiryOpen(true)
+          }}
+        />
 
-            {/* Filter Buttons */}
-            <div className="mt-10 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-              {segments.map((seg) => (
-                <button
-                  key={seg.id}
-                  onClick={() => setSelectedSegment(seg.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide whitespace-nowrap transition-colors ${
-                    selectedSegment === seg.id
-                      ? "bg-[#97692D] text-white shadow-xs"
-                      : "bg-[#EFE8DE] text-[#5C5550] hover:text-[#1E1A17]"
-                  }`}
-                >
-                  {seg.name}
-                </button>
-              ))}
-            </div>
+        {/* Filter Buttons Bar */}
+        <div id="collection" className="bg-[#FAF5F1] border-b border-[#E5DDD3] py-4 sticky top-[64px] z-20 backdrop-blur-md bg-[#FAF5F1]/90">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            {segments.map((seg) => (
+              <button
+                key={seg.id}
+                onClick={() => setSelectedSegment(seg.id)}
+                className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide whitespace-nowrap transition-colors ${
+                  selectedSegment === seg.id
+                    ? "bg-[#97692D] text-white shadow-xs"
+                    : "bg-[#EFE8DE] text-[#5C5550] hover:text-[#1E1A17]"
+                }`}
+              >
+                {seg.name}
+              </button>
+            ))}
           </div>
-        </section>
+        </div>
 
         {/* Property Grid */}
         <section className="py-16 sm:py-24 bg-[#FAF5F1]">

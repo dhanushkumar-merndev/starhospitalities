@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBanner from "@/components/CtaBanner";
 import EnquiryModal from "@/components/EnquiryModal";
+import PageHero from "@/components/PageHero";
 import { SEGMENTS } from "@/data/hospitalityData";
 
 export default function SegmentsOverviewPage() {
@@ -23,50 +24,53 @@ export default function SegmentsOverviewPage() {
     <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
       <Header onOpenEnquiry={() => setEnquiryOpen(true)} />
 
-      <main className="flex-grow pt-[68px]">
-        {/* Hero Section */}
-        <section className="relative py-16 sm:py-24 bg-[#FAF5F1] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl space-y-4">
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-                OUR BRAND ARCHITECTURE
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1A17] tracking-tight leading-[1.1]">
-                Seven Distinct Divisions. One Unified Standard.
-              </h1>
-              <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed max-w-2xl pt-2">
-                Star Hospitalities operates seven specialized hospitality divisions, spanning guest-facing luxury hotels, nature escapes, fine gastronomy, milestone events, ancient wellness, wilderness glamping, and institutional B2B advisory.
-              </p>
-            </div>
+      <main className="flex-grow pt-[64px]">
+        {/* Segments Hero — Matching Home Hero Visual Architecture */}
+        <PageHero
+          kicker="OUR BRAND ARCHITECTURE"
+          titleLine1="Seven Distinct Divisions."
+          titleLine2="One Unified Standard."
+          description="Star Hospitalities operates seven specialized hospitality divisions, spanning guest-facing luxury hotels, nature escapes, fine gastronomy, milestone events, ancient wellness, wilderness glamping, and institutional B2B advisory."
+          imageSrc="/images/hero-ai.jpg"
+          imageAlt="Star Hospitalities Portfolio of Seven Hospitality Verticals"
+          primaryCta={{
+            label: "Explore Divisions",
+            href: "#divisions"
+          }}
+          secondaryCta={{
+            label: "Talk to Us",
+            onClick: () => setEnquiryOpen(true)
+          }}
+        />
 
-            {/* Quick Segment Filter Pill Bar */}
-            <div className="mt-10 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        {/* Quick Segment Filter Pill Bar */}
+        <div id="divisions" className="bg-[#FAF5F1] border-b border-[#E5DDD3] py-4 sticky top-[64px] z-20 backdrop-blur-md bg-[#FAF5F1]/90">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            <button
+              onClick={() => setActiveSegmentId("all")}
+              className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide whitespace-nowrap transition-colors ${
+                activeSegmentId === "all"
+                  ? "bg-[#1E1A17] text-white shadow-xs"
+                  : "bg-[#EFE8DE] text-[#5C5550] hover:text-[#1E1A17]"
+              }`}
+            >
+              All 7 Divisions
+            </button>
+            {SEGMENTS.map((s) => (
               <button
-                onClick={() => setActiveSegmentId("all")}
+                key={s.id}
+                onClick={() => setActiveSegmentId(s.id)}
                 className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide whitespace-nowrap transition-colors ${
-                  activeSegmentId === "all"
-                    ? "bg-[#1E1A17] text-white shadow-xs"
+                  activeSegmentId === s.id
+                    ? "bg-[#97692D] text-white shadow-xs"
                     : "bg-[#EFE8DE] text-[#5C5550] hover:text-[#1E1A17]"
                 }`}
               >
-                All 7 Divisions
+                {s.title}
               </button>
-              {SEGMENTS.map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => setActiveSegmentId(s.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide whitespace-nowrap transition-colors ${
-                    activeSegmentId === s.id
-                      ? "bg-[#97692D] text-white shadow-xs"
-                      : "bg-[#EFE8DE] text-[#5C5550] hover:text-[#1E1A17]"
-                  }`}
-                >
-                  {s.title}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
 
         {/* Detailed Showcase of all 7 Segments */}
         <section className="py-16 sm:py-24 bg-[#FAF5F1]">

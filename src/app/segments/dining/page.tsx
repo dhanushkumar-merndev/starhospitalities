@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBanner from "@/components/CtaBanner";
 import EnquiryModal from "@/components/EnquiryModal";
+import PageHero from "@/components/PageHero";
 
 export default function StarDiningPage() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
@@ -43,49 +44,24 @@ export default function StarDiningPage() {
     <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
       <Header onOpenEnquiry={() => setEnquiryOpen(true)} />
 
-      <main className="flex-grow pt-[68px]">
-        {/* Hero */}
-        <section className="relative py-16 sm:py-24 bg-[#FAF5F1] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-7 space-y-4">
-                <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-                  STAR HOSPITALITIES &middot; DIVISION 03
-                </span>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1A17] tracking-tight leading-[1.1]">
-                  Star Dining: Sensory Gastronomy Rooted in Provenance.
-                </h1>
-                <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed max-w-xl">
-                  Culinary artistry elevated by master chefs, seasonal regional harvests, and evocative atmospheres that transform dining into enduring memories.
-                </p>
-                <div className="pt-2 flex items-center gap-3">
-                  <button
-                    onClick={() => setEnquiryOpen(true)}
-                    className="px-6 py-3 bg-[#97692D] hover:bg-[#7D521F] text-white text-xs sm:text-sm font-medium tracking-wide rounded shadow-xs transition-colors"
-                  >
-                    Reserve a Table
-                  </button>
-                  <Link
-                    href="/properties?segment=star-dining"
-                    className="px-6 py-3 bg-white border border-[#D8D0C6] hover:border-[#97692D] text-[#1E1A17] text-xs sm:text-sm font-medium tracking-wide rounded transition-colors"
-                  >
-                    Dining Venues
-                  </Link>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 relative h-[360px] sm:h-[420px] rounded-2xl overflow-hidden shadow-md border border-[#E5DDD3]">
-                <Image
-                  src="/images/star-dining.jpg"
-                  alt="Star Dining Exquisite Presentation"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+      <main className="flex-grow pt-[64px]">
+        {/* Dining Hero — Matching Home Hero Visual Architecture */}
+        <PageHero
+          kicker="STAR HOSPITALITIES · DIVISION 03"
+          titleLine1="Sensory Gastronomy."
+          titleLine2="Rooted in Provenance."
+          description="Culinary artistry elevated by master chefs, seasonal regional harvests, and evocative atmospheres that transform dining into enduring memories."
+          imageSrc="/images/ai-star-dining.jpg"
+          imageAlt="Star Dining Fine Gastronomy and Plated Culinary Artistry"
+          primaryCta={{
+            label: "Reserve a Table",
+            onClick: () => setEnquiryOpen(true)
+          }}
+          secondaryCta={{
+            label: "Dining Venues",
+            href: "/properties?segment=star-dining"
+          }}
+        />
 
         {/* Concepts Showcase */}
         <section className="py-16 sm:py-24 bg-[#FAF5F1]">

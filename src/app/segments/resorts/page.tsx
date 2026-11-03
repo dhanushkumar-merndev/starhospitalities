@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBanner from "@/components/CtaBanner";
 import EnquiryModal from "@/components/EnquiryModal";
+import PageHero from "@/components/PageHero";
 
 export default function StarResortsPage() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
@@ -43,49 +44,24 @@ export default function StarResortsPage() {
     <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
       <Header onOpenEnquiry={() => setEnquiryOpen(true)} />
 
-      <main className="flex-grow pt-[68px]">
-        {/* Hero */}
-        <section className="relative py-16 sm:py-24 bg-[#FAF5F1] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-7 space-y-4">
-                <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-                  STAR HOSPITALITIES &middot; DIVISION 02
-                </span>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1A17] tracking-tight leading-[1.1]">
-                  Star Resorts: Immersive Escapes in Nature&apos;s Grandest Landscapes.
-                </h1>
-                <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed max-w-xl">
-                  Panoramic highland retreats, coastal sanctuaries, and lush rainforest pavilions woven harmoniously into untouched landscapes for unhurried restoration.
-                </p>
-                <div className="pt-2 flex items-center gap-3">
-                  <button
-                    onClick={() => setEnquiryOpen(true)}
-                    className="px-6 py-3 bg-[#97692D] hover:bg-[#7D521F] text-white text-xs sm:text-sm font-medium tracking-wide rounded shadow-xs transition-colors"
-                  >
-                    Reserve a Retreat
-                  </button>
-                  <Link
-                    href="/properties?segment=star-resorts"
-                    className="px-6 py-3 bg-white border border-[#D8D0C6] hover:border-[#97692D] text-[#1E1A17] text-xs sm:text-sm font-medium tracking-wide rounded transition-colors"
-                  >
-                    Explore Resorts
-                  </Link>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 relative h-[360px] sm:h-[420px] rounded-2xl overflow-hidden shadow-md border border-[#E5DDD3]">
-                <Image
-                  src="/images/resorts-hero.jpg"
-                  alt="Star Resorts Highland Infinity Pool"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+      <main className="flex-grow pt-[64px]">
+        {/* Resorts Hero — Matching Home Hero Visual Architecture */}
+        <PageHero
+          kicker="STAR HOSPITALITIES · DIVISION 02"
+          titleLine1="Untamed Landscapes."
+          titleLine2="Unhurried Restoration."
+          description="Panoramic highland retreats, coastal sanctuaries, and lush rainforest pavilions woven harmoniously into untouched landscapes for unhurried restoration."
+          imageSrc="/images/ai-star-resorts.jpg"
+          imageAlt="Star Resorts Mountain Infinity Pool and Highland Retreats"
+          primaryCta={{
+            label: "Reserve a Retreat",
+            onClick: () => setEnquiryOpen(true)
+          }}
+          secondaryCta={{
+            label: "Explore Resorts",
+            href: "/properties?segment=star-resorts"
+          }}
+        />
 
         {/* Resort Types Showcase */}
         <section className="py-16 sm:py-24 bg-[#FAF5F1]">

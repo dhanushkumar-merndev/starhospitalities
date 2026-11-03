@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 
 export default function ContactPage() {
   const [activeTab, setActiveTab] = useState<"general" | "solutions" | "partnerships">("general");
@@ -63,26 +64,27 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
       <Header />
 
-      <main className="flex-grow pt-[68px]">
-        {/* Contact Hero */}
-        <section className="relative py-16 sm:py-24 bg-[#FAF5F1] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl space-y-4">
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-                GLOBAL TOUCHPOINTS &amp; CONCIERGE
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1A17] tracking-tight leading-[1.1]">
-                Connect with Star Hospitalities.
-              </h1>
-              <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed max-w-2xl pt-2">
-                Whether inquiring about reservations, destination weddings, hospitality asset management, or corporate advisory, our executive team is dedicated to your assistance.
-              </p>
-            </div>
-          </div>
-        </section>
+      <main className="flex-grow pt-[64px]">
+        {/* Contact Hero — Matching Home Hero Visual Architecture */}
+        <PageHero
+          kicker="GLOBAL TOUCHPOINTS & CONCIERGE"
+          titleLine1="Connect With Us."
+          titleLine2="Begin the Journey."
+          description="Whether inquiring about reservations, destination weddings, hospitality asset management, or corporate advisory, our executive team is dedicated to your assistance."
+          imageSrc="/images/ai-mountains-banner.jpg"
+          imageAlt="Star Hospitalities Global Concierge and Mountain Destinations"
+          primaryCta={{
+            label: "Send an Inquiry",
+            href: "#inquiry-form"
+          }}
+          secondaryCta={{
+            label: "View FAQs",
+            href: "#faqs"
+          }}
+        />
 
         {/* Contact Grid: Form on Left, Offices on Right */}
-        <section className="py-16 sm:py-24 bg-[#FAF5F1]">
+        <section id="inquiry-form" className="py-16 sm:py-24 bg-[#FAF5F1]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               {/* Form Column */}
@@ -328,7 +330,7 @@ export default function ContactPage() {
         </section>
 
         {/* FAQ Accordion Section */}
-        <section className="py-16 sm:py-20 bg-[#F5EFEB] border-t border-[#E5DDD3]">
+        <section id="faqs" className="py-16 sm:py-20 bg-[#F5EFEB] border-t border-[#E5DDD3]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block mb-2">

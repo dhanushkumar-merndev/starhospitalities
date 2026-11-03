@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBanner from "@/components/CtaBanner";
 import EnquiryModal from "@/components/EnquiryModal";
+import PageHero from "@/components/PageHero";
 
 export default function AboutPage() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
@@ -46,23 +47,24 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
       <Header onOpenEnquiry={() => setEnquiryOpen(true)} />
 
-      <main className="flex-grow pt-[68px]">
-        {/* About Hero */}
-        <section className="relative py-16 sm:py-24 bg-[#FAF5F1] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl space-y-4">
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-                ABOUT STAR HOSPITALITIES
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1A17] tracking-tight leading-[1.1]">
-                A Legacy of Creating Destinations &amp; Delivering Experiences.
-              </h1>
-              <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed max-w-2xl pt-2">
-                Star Hospitalities is an integrated multi-segment hospitality group. We conceive, design, develop, and operate high-performing hospitality brands across hotels, destination retreats, fine dining, private events, holistic wellness, and asset advisory.
-              </p>
-            </div>
-          </div>
-        </section>
+      <main className="flex-grow pt-[64px]">
+        {/* About Hero — Matching Home Hero Visual Architecture */}
+        <PageHero
+          kicker="ABOUT STAR HOSPITALITIES"
+          titleLine1="A Legacy of Destinations."
+          titleLine2="Delivering Experiences."
+          description="Star Hospitalities is an integrated multi-segment hospitality group. We conceive, design, develop, and operate high-performing hospitality brands across hotels, destination retreats, fine dining, private events, holistic wellness, and asset advisory."
+          imageSrc="/images/ai-mountains-banner.jpg"
+          imageAlt="Star Hospitalities Scenic Mountain Estates and Hospitality Destinations"
+          primaryCta={{
+            label: "Explore Our Portfolio",
+            href: "/segments"
+          }}
+          secondaryCta={{
+            label: "Partner With Us",
+            onClick: () => setEnquiryOpen(true)
+          }}
+        />
 
         {/* Who We Are & Visual Grid */}
         <section className="py-16 sm:py-24 bg-[#FAF5F1]">

@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBanner from "@/components/CtaBanner";
 import EnquiryModal from "@/components/EnquiryModal";
+import PageHero from "@/components/PageHero";
 
 export default function StarExperiencesPage() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
@@ -47,49 +48,24 @@ export default function StarExperiencesPage() {
     <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
       <Header onOpenEnquiry={() => setEnquiryOpen(true)} />
 
-      <main className="flex-grow pt-[68px]">
-        {/* Hero */}
-        <section className="relative py-16 sm:py-24 bg-[#FAF5F1] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-7 space-y-4">
-                <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-                  STAR HOSPITALITIES &middot; DIVISION 06
-                </span>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1A17] tracking-tight leading-[1.1]">
-                  Star Experiences: Curated Journeys Beyond the Ordinary.
-                </h1>
-                <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed max-w-xl">
-                  Pioneering luxury glamping under star-canopied skies, guided wilderness expeditions, and authentic cultural immersion designed for adventurous souls.
-                </p>
-                <div className="pt-2 flex items-center gap-3">
-                  <button
-                    onClick={() => setEnquiryOpen(true)}
-                    className="px-6 py-3 bg-[#97692D] hover:bg-[#7D521F] text-white text-xs sm:text-sm font-medium tracking-wide rounded shadow-xs transition-colors"
-                  >
-                    Curate an Experience
-                  </button>
-                  <Link
-                    href="/properties?segment=star-experiences"
-                    className="px-6 py-3 bg-white border border-[#D8D0C6] hover:border-[#97692D] text-[#1E1A17] text-xs sm:text-sm font-medium tracking-wide rounded transition-colors"
-                  >
-                    View Camps &amp; Trails
-                  </Link>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 relative h-[360px] sm:h-[420px] rounded-2xl overflow-hidden shadow-md border border-[#E5DDD3]">
-                <Image
-                  src="/images/experiences-hero.jpg"
-                  alt="Star Experiences Starlit Safari Tent"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+      <main className="flex-grow pt-[64px]">
+        {/* Experiences Hero — Matching Home Hero Visual Architecture */}
+        <PageHero
+          kicker="STAR HOSPITALITIES · DIVISION 06"
+          titleLine1="Elevated Adventure."
+          titleLine2="Uncharted Horizons."
+          description="Pioneering luxury glamping under star-canopied skies, guided wilderness expeditions, and authentic cultural immersion designed for adventurous souls."
+          imageSrc="/images/ai-star-experiences.jpg"
+          imageAlt="Star Experiences Luxury Safari Glamping Tent at Twilight"
+          primaryCta={{
+            label: "Curate an Experience",
+            onClick: () => setEnquiryOpen(true)
+          }}
+          secondaryCta={{
+            label: "View Camps & Trails",
+            href: "/properties?segment=star-experiences"
+          }}
+        />
 
         {/* Experiences Showcase */}
         <section className="py-16 sm:py-24 bg-[#FAF5F1]">

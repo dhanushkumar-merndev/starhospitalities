@@ -21,6 +21,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBanner from "@/components/CtaBanner";
 import EnquiryModal from "@/components/EnquiryModal";
+import PageHero from "@/components/PageHero";
 
 export default function SolutionsPage() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
@@ -74,49 +75,24 @@ export default function SolutionsPage() {
     <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
       <Header onOpenEnquiry={() => setEnquiryOpen(true)} />
 
-      <main className="flex-grow pt-[68px]">
-        {/* Solutions Hero */}
-        <section className="relative py-16 sm:py-24 bg-[#FAF5F1] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-7 space-y-4">
-                <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-                  B2B HOSPITALITY ADVISORY &amp; ASSET MANAGEMENT
-                </span>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1A17] tracking-tight leading-[1.1]">
-                  Star Hospitality Solutions: End-to-End Asset Value Creation.
-                </h1>
-                <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed max-w-xl">
-                  We partner with property owners, real estate developers, private equity funds, and family offices to conceptualize, construct, operate, and maximize the commercial yield of luxury hospitality destinations.
-                </p>
-                <div className="pt-2 flex items-center gap-3">
-                  <button
-                    onClick={() => setEnquiryOpen(true)}
-                    className="px-6 py-3 bg-[#97692D] hover:bg-[#7D521F] text-white text-xs sm:text-sm font-medium tracking-wide rounded shadow-xs transition-colors"
-                  >
-                    Request Advisory Consultation
-                  </button>
-                  <a
-                    href="#services"
-                    className="px-6 py-3 bg-white border border-[#D8D0C6] hover:border-[#97692D] text-[#1E1A17] text-xs sm:text-sm font-medium tracking-wide rounded transition-colors"
-                  >
-                    Explore 7 Core Services
-                  </a>
-                </div>
-              </div>
-
-              <div className="lg:col-span-5 relative h-[360px] sm:h-[420px] rounded-2xl overflow-hidden shadow-md border border-[#E5DDD3]">
-                <Image
-                  src="/images/solutions-consulting.jpg"
-                  alt="Star Hospitality Solutions Boardroom Consultation"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+      <main className="flex-grow pt-[64px]">
+        {/* Solutions Hero — Matching Home Hero Visual Architecture */}
+        <PageHero
+          kicker="B2B HOSPITALITY ADVISORY & ASSET MANAGEMENT"
+          titleLine1="End-to-End Expertise."
+          titleLine2="Asset Optimization."
+          description="We partner with property owners, real estate developers, private equity funds, and family offices to conceptualize, construct, operate, and maximize the commercial yield of luxury hospitality destinations."
+          imageSrc="/images/ai-hospitality-solutions.jpg"
+          imageAlt="Star Hospitality Solutions Executive Lobby and B2B Advisory"
+          primaryCta={{
+            label: "Request Advisory Consultation",
+            onClick: () => setEnquiryOpen(true)
+          }}
+          secondaryCta={{
+            label: "Explore 7 Core Services",
+            href: "#services"
+          }}
+        />
 
         {/* The Value Proposition for Owners */}
         <section className="py-16 sm:py-20 bg-[#F3EEE8] border-b border-[#E5DDD3]">
