@@ -64,7 +64,7 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
           ? "bg-[#FAF5F1]/95 backdrop-blur-md shadow-sm border-b border-[#E5DDD3]/80 py-3.5"
-          : "bg-[#FAF5F1] py-4 md:py-5 border-b border-[#E5DDD3]/40"
+          : "bg-[#FAF5F1] py-4 md:py-5 border-b border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -84,22 +84,22 @@ export default function HomePage() {
         {/* Directly reproducing desktop & mobile visual balance from Reference Images */}
         {/* ========================================================================= */}
         <section className="relative w-full min-h-[580px] lg:min-h-[680px] xl:min-h-[740px] flex items-center overflow-hidden bg-[#FAF5F1]">
-          {/* Full-Bleed Right Pavilion Image with Organic Soft Gradient Blending */}
-          <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[58%] xl:w-[62%] h-full z-0 overflow-hidden">
+          {/* Full-Bleed Right Pavilion Image with Organic Soft Gradient Mask */}
+          <div
+            className="hidden lg:block absolute top-0 right-0 bottom-0 w-[58%] xl:w-[62%] h-full z-0 pointer-events-none select-none"
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 8%, rgba(0,0,0,0.8) 25%, black 40%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 8%, rgba(0,0,0,0.8) 25%, black 40%)"
+            }}
+          >
             <Image
               src="/images/hero-ai.jpg"
               alt="Star Hospitalities Luxury Hillside Pavilion and Infinity Pool Overlooking Misty Highland Valley"
               fill
               priority
               sizes="62vw"
-              className="object-cover object-center transform scale-[1.01] hover:scale-105 transition-transform duration-1000 ease-out"
+              className="object-cover object-center"
             />
-            {/* Seamless Left Edge Blend into #FAF5F1 cream background */}
-            <div className="absolute inset-y-0 left-0 w-44 xl:w-60 bg-gradient-to-r from-[#FAF5F1] via-[#FAF5F1]/80 to-transparent pointer-events-none" />
-            {/* Subtle bottom blend */}
-            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FAF5F1] to-transparent pointer-events-none" />
-            {/* Subtle top blend under nav */}
-            <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-[#FAF5F1]/50 to-transparent pointer-events-none" />
           </div>
 
           {/* Left Text Content Container */}
@@ -172,7 +172,7 @@ export default function HomePage() {
         {/* Desktop: Exactly 7 high-res cards side by side matching Reference 1 */}
         {/* Mobile: Horizontal list pill cards with high-res thumbnails matching Reference 2 */}
         {/* ========================================================================= */}
-        <section id="segments" className="py-16 sm:py-24 bg-[#FAF5F1] border-t border-[#E5DDD3]/60">
+        <section id="segments" className="py-16 sm:py-24 bg-[#FAF5F1]">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
             {/* Header: Title on left, subtitle with vertical separator on right */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-4">
