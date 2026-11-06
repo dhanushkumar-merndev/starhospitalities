@@ -57,7 +57,7 @@ export default function HomePage() {
         {/* ========================================================================= */}
         <section
           id="hero"
-          className="relative w-full min-h-screen flex flex-col items-center justify-end text-center overflow-hidden pb-10 sm:pb-14 px-4"
+          className="relative w-full min-h-screen min-h-[100dvh] flex flex-col items-center justify-center sm:justify-end text-center overflow-hidden pt-20 pb-10 sm:pt-0 sm:pb-14 px-4"
         >
           {/* Ambient Video Background */}
           <HeroVideoBackground
@@ -69,8 +69,8 @@ export default function HomePage() {
             onVideoReady={() => setShowHeroText(true)}
           />
 
-          {/* Hero Content in Bottom Section — Pure Glassmorphism (0px fill, 100px blur, no borders) */}
-          <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-10 py-5 sm:py-8 rounded-2xl sm:rounded-3xl glass-blur-100 flex flex-col items-center mb-2 sm:mb-4 transition-all duration-700">
+          {/* Hero Content — Centered on Mobile, Bottom-Aligned on Desktop */}
+          <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-10 py-5 sm:py-8 rounded-2xl sm:rounded-3xl glass-blur-100 flex flex-col items-center mb-0 sm:mb-4 transition-all duration-700">
             {/* Interactive Scene Navigation Indicators */}
             <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
               {RESORT_HERO_SCENES.map((scene, idx) => {

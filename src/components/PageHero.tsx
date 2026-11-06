@@ -35,7 +35,7 @@ export default function PageHero({
   secondaryCta,
 }: PageHeroProps) {
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-end text-center overflow-hidden pb-10 sm:pb-14 px-4 bg-[#FAF5F1]">
+    <section className="relative w-full min-h-screen min-h-[100dvh] flex flex-col items-center justify-center sm:justify-end text-center overflow-hidden pt-20 pb-10 sm:pt-0 sm:pb-14 px-4 bg-[#FAF5F1]">
       {/* Full-Bleed Cinematic Hero Background Image */}
       <div className="absolute inset-0 w-full h-full z-0 select-none overflow-hidden">
         <Image
@@ -47,17 +47,17 @@ export default function PageHero({
           className="object-cover object-center scale-100"
         />
         {/* Overall cinematic darkening for text clarity & deep colors */}
-        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/45 sm:bg-black/40 pointer-events-none" />
         
         {/* Top subtle vignette for clear header / navigation contrast */}
         <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/70 via-black/25 to-transparent pointer-events-none" />
 
         {/* Deep, smooth bottom gradient covering lower 75% to ensure crisp contrast behind title, description and CTAs */}
-        <div className="absolute inset-x-0 bottom-0 h-[75%] sm:h-[70%] bg-gradient-to-t from-black/95 via-black/65 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-full sm:h-[70%] bg-gradient-to-t from-black/95 via-black/60 to-transparent pointer-events-none" />
       </div>
 
-      {/* Hero Content in Bottom Section — Pure Glassmorphism (0px fill, 100px blur, no borders) */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-10 py-5 sm:py-8 rounded-2xl sm:rounded-3xl glass-blur-100 flex flex-col items-center mb-2 sm:mb-4 transition-all duration-700">
+      {/* Hero Content — Centered on Mobile, Bottom-Aligned on Desktop */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-10 py-5 sm:py-8 rounded-2xl sm:rounded-3xl glass-blur-100 flex flex-col items-center mb-0 sm:mb-4 transition-all duration-700">
         <div className="flex flex-col items-center text-center">
           {/* Optional Kicker */}
           {kicker && (

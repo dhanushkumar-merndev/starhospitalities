@@ -228,11 +228,11 @@ const HeroVideoBackground = forwardRef<HeroVideoBackgroundHandle, HeroVideoBackg
         </video>
 
         {/* 3. Subtle vignette overlays (clean & natural, no dark top shadow) */}
-        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/25 sm:bg-black/10 pointer-events-none transition-colors duration-500" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
 
         {/* 4. Floating Glassmorphic Audio Controls (Unmute / Mute) & Live Badge (Icon-Free) */}
-        <div className="absolute bottom-6 right-6 z-30 flex items-center gap-3">
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 flex items-center gap-3">
           {isLiveStream && (
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-white/40 text-zinc-950 text-[10px] font-bold tracking-widest uppercase shadow-xl">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
