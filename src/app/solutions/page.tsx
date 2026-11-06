@@ -2,201 +2,276 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowRight,
-  Layers,
-  Cog,
-  Building,
-  TrendingUp,
-  ShieldCheck,
   CheckCircle2,
-  BarChart3,
-  Compass,
-  FileCheck2,
-  Users2,
-  Rocket
+  Sparkles,
+  Users,
+  MapPin,
+  Waves,
+  Zap,
+  Car,
+  UtensilsCrossed,
+  ShieldCheck,
+  Wifi,
+  CalendarCheck
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBanner from "@/components/CtaBanner";
 import EnquiryModal from "@/components/EnquiryModal";
 import PageHero from "@/components/PageHero";
+import TempleIcon from "@/components/TempleIcon";
+import {
+  RESORT_SOLUTIONS,
+  RESORT_FACILITIES,
+  RESORT_PACKAGES
+} from "@/config/resortData";
 
 export default function SolutionsPage() {
   const [enquiryOpen, setEnquiryOpen] = useState(false);
+  const [selectedSolutionKey, setSelectedSolutionKey] = useState("both-lawns");
 
-  const services = [
-    {
-      icon: <Layers className="w-6 h-6 text-[#97692D]" />,
-      title: "Hospitality Management",
-      desc: "Full-service hotel and resort operating contracts. We assume end-to-end management, standardizing guest satisfaction, optimizing staff performance, and maximizing asset longevity.",
-      deliverables: ["P&L Responsibility & Financial Governance", "General Manager & Executive Placement", "Brand Standard Audits & Quality Control", "Transparent Owner Reporting Dashboards"]
-    },
-    {
-      icon: <Cog className="w-6 h-6 text-[#97692D]" />,
-      title: "Operations Management",
-      desc: "Institutional operational rigour covering food & beverage cost controls, housekeeping protocols, preventative engineering maintenance, and digital staff training systems.",
-      deliverables: ["Standard Operating Procedures (SOPs)", "Supply Chain & Vendor Procurement", "Energy & Waste Efficiency Audits", "Workforce Empowerment & Retention"]
-    },
-    {
-      icon: <Building className="w-6 h-6 text-[#97692D]" />,
-      title: "Hospitality Development & Technical Advisory",
-      desc: "Guiding owners and developers from greenfield land acquisition to architectural master planning, interior design coordination, and timely project delivery.",
-      deliverables: ["Architectural Program Briefs & Space Planning", "MEP & Kitchen Engineering Oversight", "FF&E and OS&E Sourcing & Budgeting", "Contractor & Consultant Coordination"]
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6 text-[#97692D]" />,
-      title: "Hospitality Consulting & Feasibility",
-      desc: "Data-driven market feasibility studies, highest-and-best-use asset analysis, competitor benchmarking, and financial yield projections for prospective ventures.",
-      deliverables: ["Demographic & Competitive Field Research", "10-Year Pro Forma Financial Modeling", "Investment Teaser & Capital Deck Advisory", "Risk Mitigation & Phasing Strategies"]
-    },
-    {
-      icon: <BarChart3 className="w-6 h-6 text-[#97692D]" />,
-      title: "Revenue Management & Yield Optimization",
-      desc: "Dynamic algorithmic pricing models, channel management, direct-booking conversion engine optimization, and distribution contract negotiations with global OTAs.",
-      deliverables: ["Algorithmic Daily RevPAR Optimization", "Direct Web Booking Engine Enhancement", "GDS & Global Corporate Rate Agreements", "Market Share Index (MPI/RGI) Tracking"]
-    },
-    {
-      icon: <Rocket className="w-6 h-6 text-[#97692D]" />,
-      title: "Pre-Opening Turnkey Services",
-      desc: "Flawless countdown orchestrations ensuring your property opens on schedule with trained personnel, compliant licenses, operating collateral, and initial market buzz.",
-      deliverables: ["180-Day Critical Path Countdown Timeline", "Full-Staff Recruitment & Immersion Bootcamps", "Trial Soft-Launch & Dry-Run Simulations", "Regulatory & Fire Life Safety Clearances"]
-    },
-    {
-      icon: <Compass className="w-6 h-6 text-[#97692D]" />,
-      title: "Branding, Concept & Marketing",
-      desc: "Creating magnetic brand identities, culinary concept narratives, visual direction, digital marketing funnels, and high-impact PR launch campaigns.",
-      deliverables: ["Visual Identity, Logo & Brand Guidelines", "Culinary Menu Storytelling & Collateral", "Editorial Photography & Cinematography Direction", "Global Luxury Travel Media Relations"]
+  const openEnquiry = (solutionKey = "both-lawns") => {
+    setSelectedSolutionKey(solutionKey);
+    setEnquiryOpen(true);
+  };
+
+  const getFacilityIcon = (iconName: string) => {
+    switch (iconName) {
+      case "MapPin":
+        return MapPin;
+      case "Waves":
+        return Waves;
+      case "Zap":
+        return Zap;
+      case "Car":
+        return Car;
+      case "Sparkles":
+        return Sparkles;
+      case "UtensilsCrossed":
+        return UtensilsCrossed;
+      case "ShieldCheck":
+        return ShieldCheck;
+      case "Wifi":
+        return Wifi;
+      case "CalendarCheck":
+        return CalendarCheck;
+      case "Temple":
+        return TempleIcon;
+      default:
+        return Sparkles;
     }
-  ];
+  };
 
   return (
-    <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#97692D]/20 selection:text-[#1E1A17]">
-      <Header onOpenEnquiry={() => setEnquiryOpen(true)} />
+    <div className="min-h-screen bg-[#FAF5F1] text-[#1E1A17] flex flex-col font-sans selection:bg-[#8C5E2D]/20 selection:text-[#1E1A17]">
+      {/* Header */}
+      <Header onOpenEnquiry={() => openEnquiry("both-lawns")} />
 
-      <main className="flex-grow pt-[64px]">
-        {/* Solutions Hero — Matching Home Hero Visual Architecture */}
+      <main className="flex-grow">
+        {/* Solutions Page Hero */}
         <PageHero
-          kicker="B2B HOSPITALITY ADVISORY & ASSET MANAGEMENT"
-          titleLine1="End-to-End Expertise."
-          titleLine2="Asset Optimization."
-          description="We partner with property owners, real estate developers, private equity funds, and family offices to conceptualize, construct, operate, and maximize the commercial yield of luxury hospitality destinations."
-          imageSrc="/images/ai-hospitality-solutions.jpg"
-          imageAlt="Star Hospitality Solutions Executive Lobby and B2B Advisory"
+          kicker="HOSPITALITY & CELEBRATION SOLUTIONS"
+          titleLine1="Complete Solutions."
+          titleLine2="For Every Celebration."
+          description="Turnkey catering, decor, and villa stay inclusions for seamless celebrations at Star Aqua Villas."
+          imageSrc="/images/events-hero.jpg"
+          imageAlt="Star Hospitalities Turnkey Event and Celebration Solutions"
           primaryCta={{
-            label: "Request Advisory Consultation",
-            onClick: () => setEnquiryOpen(true)
+            label: "Explore Solutions",
+            href: "#solutions-grid"
           }}
           secondaryCta={{
-            label: "Explore 7 Core Services",
-            href: "#services"
+            label: "Inquire Availability",
+            onClick: () => openEnquiry("both-lawns")
           }}
         />
 
-        {/* The Value Proposition for Owners */}
-        <section className="py-16 sm:py-20 bg-[#F3EEE8] border-b border-[#E5DDD3]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mb-12">
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block mb-2">
-                THE OWNER PROPOSITION
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-serif text-[#1E1A17] tracking-tight">
-                Why Property Developers Entrust Their Assets to Us
+        {/* ========================================================================= */}
+        {/* RESORT FACILITIES & ON-SITE SERVICES                                     */}
+        {/* ========================================================================= */}
+        <section id="facilities" className="py-20 sm:py-28 bg-[#FAF5F1] border-b border-[#E5DDD3]">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div className="max-w-3xl mb-14">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1E1A17] tracking-tight">
+                Everything for an Uninterrupted Celebration
               </h2>
+              <p className="text-xs sm:text-sm md:text-base text-[#5C5550] mt-3 leading-relaxed">
+                Thoughtfully planned amenities and on-site event services designed for complete peace of mind, guest comfort, and unforgettable memories.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-8 bg-white rounded-2xl border border-[#E5DDD3] space-y-3">
-                <div className="text-3xl font-serif font-bold text-[#97692D]">
-                  +34%
-                </div>
-                <h3 className="font-serif text-xl text-[#1E1A17] font-medium">
-                  Average RevPAR Outperformance
-                </h3>
-                <p className="text-xs text-[#5C5550] leading-relaxed">
-                  Through proprietary algorithmic revenue management, direct-booking channel leverage, and premium market positioning.
-                </p>
-              </div>
-
-              <div className="p-8 bg-white rounded-2xl border border-[#E5DDD3] space-y-3">
-                <div className="text-3xl font-serif font-bold text-[#97692D]">
-                  Zero
-                </div>
-                <h3 className="font-serif text-xl text-[#1E1A17] font-medium">
-                  Pre-Opening Delays
-                </h3>
-                <p className="text-xs text-[#5C5550] leading-relaxed">
-                  Rigid 180-day critical path milestones guarantee smooth technical handovers, timely licensing, and trained operational teams.
-                </p>
-              </div>
-
-              <div className="p-8 bg-white rounded-2xl border border-[#E5DDD3] space-y-3">
-                <div className="text-3xl font-serif font-bold text-[#97692D]">
-                  100%
-                </div>
-                <h3 className="font-serif text-xl text-[#1E1A17] font-medium">
-                  Fiduciary Alignment
-                </h3>
-                <p className="text-xs text-[#5C5550] leading-relaxed">
-                  We structure owner-first performance-linked incentive models that directly harmonize our operating success with your net profit.
-                </p>
-              </div>
+            {/* 9 Simple Facility Cards with Light Glassmorphism */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {RESORT_FACILITIES.map((facility) => {
+                const IconComponent = getFacilityIcon(facility.iconName);
+                return (
+                  <div
+                    key={facility.title}
+                    className="p-6 sm:p-7 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E5DDD3] hover:border-[#8C5E2D]/50 transition-all duration-300 shadow-xs hover:shadow-lg flex flex-col justify-between group"
+                  >
+                    <div className="space-y-4">
+                      <div className="w-12 h-12 rounded-xl bg-[#8C5E2D]/10 border border-[#8C5E2D]/20 text-[#8C5E2D] flex items-center justify-center group-hover:scale-105 group-hover:bg-[#8C5E2D]/20 transition-all">
+                        <IconComponent className="w-6 h-6 text-[#8C5E2D]" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg sm:text-xl font-serif font-bold text-[#1E1A17] group-hover:text-[#8C5E2D] transition-colors">
+                          {facility.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#5C5550] mt-2 leading-relaxed">
+                          {facility.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* 7 Core Services Breakdown */}
-        <section id="services" className="py-16 sm:py-24 bg-[#FAF5F1]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block mb-2">
-                COMPLETE SERVICE SPECTRUM
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-serif text-[#1E1A17] tracking-tight">
-                Comprehensive B2B Hospitality Solutions
-              </h2>
-            </div>
-
-            <div className="space-y-8">
-              {services.map((service, index) => (
+        {/* ========================================================================= */}
+        {/* MAIN SOLUTIONS BREAKDOWN                                                  */}
+        {/* ========================================================================= */}
+        <section id="solutions-grid" className="py-20 sm:py-28 bg-[#FAF5F1] border-b border-[#E5DDD3]">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 space-y-24 sm:space-y-32">
+            {RESORT_SOLUTIONS.map((sol, index) => {
+              const isEven = index % 2 === 1;
+              return (
                 <div
-                  key={service.title}
-                  className="p-8 bg-white rounded-2xl border border-[#E5DDD3] shadow-xs hover:border-[#97692D] transition-colors"
+                  key={sol.id}
+                  id={sol.anchor}
+                  className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center ${
+                    isEven ? "lg:flex-row-reverse" : ""
+                  }`}
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    <div className="lg:col-span-5 space-y-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-[#FAF5F1] border border-[#E5DDD3] flex items-center justify-center shrink-0">
-                          {service.icon}
-                        </div>
-                        <div>
-                          <span className="text-[10px] uppercase font-bold tracking-widest text-[#97692D]">
-                            Service 0{index + 1}
-                          </span>
-                          <h3 className="text-2xl font-serif text-[#1E1A17]">
-                            {service.title}
-                          </h3>
-                        </div>
-                      </div>
-                      <p className="text-xs sm:text-sm text-[#5C5550] leading-relaxed pt-1">
-                        {service.desc}
+                  {/* Image Column */}
+                  <div
+                    className={`lg:col-span-6 ${
+                      isEven ? "lg:order-2" : "lg:order-1"
+                    } relative h-[280px] sm:h-[400px] lg:h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-[#E5DDD3] group bg-stone-100`}
+                  >
+                    <Image
+                      src={sol.image}
+                      alt={sol.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+
+                  {/* Content Column */}
+                  <div
+                    className={`lg:col-span-6 ${
+                      isEven ? "lg:order-1" : "lg:order-2"
+                    } space-y-6`}
+                  >
+                    <div>
+                      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1E1A17] tracking-tight leading-tight">
+                        {sol.title}
+                      </h2>
+                      <p className="text-xs sm:text-sm text-[#8C5E2D] font-serif italic mt-2">
+                        &ldquo;{sol.tagline}&rdquo;
                       </p>
                     </div>
 
-                    <div className="lg:col-span-7 bg-[#FAF5F1] p-6 rounded-xl border border-[#E5DDD3] space-y-2">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-[#1E1A17] block mb-2">
-                        Key Deliverables &amp; Scope:
+                    <p className="text-sm sm:text-base text-[#5C5550] leading-relaxed">
+                      {sol.description}
+                    </p>
+
+                    {/* Deliverables Checklist */}
+                    <div className="space-y-2.5 pt-2">
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#1E1A17] block">
+                        What You Get With This Solution:
                       </span>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-[#5C5550]">
-                        {service.deliverables.map((item) => (
-                          <div key={item} className="flex items-start gap-2">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#97692D] shrink-0 mt-0.5" />
+                      <div className="space-y-2">
+                        {sol.deliverables.map((item) => (
+                          <div key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#5C5550]">
+                            <CheckCircle2 className="w-4 h-4 text-[#8C5E2D] shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </div>
                         ))}
                       </div>
                     </div>
+
+                    {/* Action button */}
+                    <div className="pt-4 flex flex-wrap items-center gap-3">
+                      <button
+                        onClick={() => openEnquiry(sol.id)}
+                        className="px-7 py-3.5 bg-[#1E1A17] hover:bg-[#8C5E2D] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md transition-all cursor-pointer hover:scale-105 active:scale-95 flex items-center gap-2"
+                      >
+                        <span>Inquire for {sol.title.split(",")[0]}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* CURATED CELEBRATION PACKAGES (Without Prices)                             */}
+        {/* ========================================================================= */}
+        <section className="py-20 sm:py-28 bg-[#FAF5F1] border-b border-[#E5DDD3]">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div className="max-w-3xl mb-14">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1E1A17] tracking-tight">
+                Curated Celebration Options
+              </h2>
+              <p className="text-xs sm:text-sm md:text-base text-[#5C5550] mt-3 leading-relaxed">
+                Flexible timing slots, sunset cocktails, full event days, and overnight villa retreats designed to suit your bespoke occasion.
+              </p>
+            </div>
+
+            {/* Packages Grid with Light Glassmorphism */}
+            <div className="space-y-12">
+              {RESORT_PACKAGES.map((section) => (
+                <div key={section.category} className="space-y-6">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between pb-3 border-b border-[#E5DDD3]">
+                    <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#1E1A17]">
+                      {section.category}
+                    </h3>
+                    <span className="text-xs text-[#8C5E2D] font-mono mt-1 sm:mt-0 font-bold">
+                      {section.note}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {section.packages.map((pkg) => (
+                      <div
+                        key={pkg.name}
+                        className="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-[#E5DDD3] hover:border-[#8C5E2D]/50 transition-all flex flex-col justify-between space-y-4 shadow-xs hover:shadow-lg"
+                      >
+                        <div className="space-y-3">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#8C8278] font-mono block">
+                            {pkg.duration} &bull; {pkg.capacity}
+                          </span>
+                          <h4 className="text-lg font-serif font-bold text-[#1E1A17]">
+                            {pkg.name}
+                          </h4>
+
+                          <div className="pt-2 space-y-1.5 border-t border-[#E5DDD3]">
+                            {pkg.features.map((f) => (
+                              <div key={f} className="text-xs text-[#5C5550] flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#8C5E2D] shrink-0" />
+                                <span>{f}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="pt-3">
+                          <button
+                            onClick={() => openEnquiry(pkg.name)}
+                            className="w-full py-2.5 rounded-full bg-[#1E1A17] hover:bg-[#8C5E2D] text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-xs"
+                          >
+                            Inquire Package
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
@@ -204,43 +279,26 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        {/* B2B Enquiry Section */}
-        <section className="py-16 sm:py-20 bg-[#F5EFEB] border-t border-[#E5DDD3]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-[#97692D] font-semibold block">
-              SCHEDULE A CONFIDENTIAL DISCUSSION
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif text-[#1E1A17]">
-              Ready to Maximize the Potential of Your Hospitality Asset?
-            </h2>
-            <p className="text-sm text-[#5C5550] max-w-xl mx-auto leading-relaxed">
-              Our development advisory board is ready to review your property concept, audit existing operations, or structure a high-yield operating partnership.
-            </p>
-            <div className="pt-2">
-              <button
-                onClick={() => setEnquiryOpen(true)}
-                className="px-8 py-3.5 bg-[#1E1A17] hover:bg-[#97692D] text-white text-sm font-medium tracking-wide rounded shadow-md transition-colors inline-flex items-center gap-2"
-              >
-                <span>Submit Development Enquiry</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Banner */}
+        {/* Bottom CTA Banner */}
         <CtaBanner
-          onOpenEnquiry={() => setEnquiryOpen(true)}
-          kicker="PARTNER WITH US"
-          title="Build. Operate. Grow."
-          subtitle="Your Hospitality Partner, from Concept to Operations."
-          buttonText="Connect with Us"
+          kicker="SCHEDULE A SUNSET VISIT"
+          title="Experience the Lawns at Dusk"
+          subtitle="The grounds look best in the evening light. Speak with our concierge team to schedule a private walkthrough and receive custom planning guidance."
+          buttonText="Schedule Visit"
+          onOpenEnquiry={() => openEnquiry("sunset-visit")}
         />
       </main>
 
+      {/* Footer */}
       <Footer />
-      <EnquiryModal isOpen={enquiryOpen} onClose={() => setEnquiryOpen(false)} defaultSegment="hospitality-solutions" defaultType="solutions" />
+
+      {/* Enquiry Modal */}
+      <EnquiryModal
+        isOpen={enquiryOpen}
+        onClose={() => setEnquiryOpen(false)}
+        defaultSegment={selectedSolutionKey}
+        defaultType="solutions"
+      />
     </div>
   );
 }
-

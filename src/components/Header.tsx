@@ -3,9 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X, ArrowRight, Bed, Palmtree, UtensilsCrossed, Calendar, Flower2, Mountain, Layers } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import StarLogo from "./StarLogo";
-import { SEGMENTS } from "@/data/hospitalityData";
 
 interface HeaderProps {
   onOpenEnquiry?: () => void;
@@ -14,188 +13,197 @@ interface HeaderProps {
 export default function Header({ onOpenEnquiry }: HeaderProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [segmentsDropdownOpen, setSegmentsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const isScrolled = window.scrollY > 30;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menus on route change
-  useEffect(() => {
+  const closeMenus = () => {
     setMobileMenuOpen(false);
-    setSegmentsDropdownOpen(false);
-  }, [pathname]);
+  };
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Segments", href: "/segments", isDropdown: true },
-    { name: "Hospitality Solutions", href: "/solutions" },
-    { name: "Properties", href: "/properties" },
+    { name: "Solutions", href: "/solutions" },
+    { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" }
   ];
 
-  const getSegmentIcon = (id: string) => {
-    switch (id) {
-      case "star-stays":
-        return <Bed className="w-4 h-4 text-[#97692D]" />;
-      case "star-resorts":
-        return <Palmtree className="w-4 h-4 text-[#97692D]" />;
-      case "star-dining":
-        return <UtensilsCrossed className="w-4 h-4 text-[#97692D]" />;
-      case "star-events":
-        return <Calendar className="w-4 h-4 text-[#97692D]" />;
-      case "star-wellness":
-        return <Flower2 className="w-4 h-4 text-[#97692D]" />;
-      case "star-experiences":
-        return <Mountain className="w-4 h-4 text-[#97692D]" />;
-      default:
-        return <Layers className="w-4 h-4 text-[#97692D]" />;
-    }
-  };
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#FAF5F1]/95 backdrop-blur-md shadow-sm border-b border-[#E5DDD3]/80 py-3.5"
-          : "bg-[#FAF5F1] py-4 md:py-5 border-b border-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo matching reference */}
-          <StarLogo size="md" />
+    <header className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+      {/* Dynamic Island Capsule Container: Transparent & full-width when landed, Centered White Liquid Glass Pill when scrolled */}
+      <div
+        className={`pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          scrolled
+            ? "mt-2 sm:mt-3.5 w-[92%] sm:w-[90%] max-w-[880px] xl:max-w-[920px] px-5 sm:px-7 py-2 sm:py-2.5 rounded-full dynamic-island-scrolled"
+            : "mt-0 w-full max-w-7xl px-5 sm:px-10 py-4 sm:py-6 rounded-none dynamic-island-top"
+        }`}
+      >
+        <div className="w-full flex items-center justify-between gap-3 sm:gap-6">
+          {/* Left: Star Logo with Smooth Light/Dark Crossfade */}
+          <div className="flex items-center shrink-0">
+            <Link
+              href="/"
+              className="relative flex items-center h-8 sm:h-9"
+              onClick={closeMenus}
+              aria-label="Star Hospitalities - Return to Home"
+            >
+              {/* White Logo (Visible when landed) */}
+              <div
+                className={`transition-opacity duration-300 ${
+                  scrolled ? "opacity-0 pointer-events-none absolute" : "opacity-100"
+                }`}
+              >
+                <StarLogo variant="light" size="sm" priority />
+              </div>
+              {/* Dark Logo (Visible when scrolled Dynamic Island) */}
+              <div
+                className={`transition-opacity duration-300 ${
+                  scrolled ? "opacity-100" : "opacity-0 pointer-events-none absolute"
+                }`}
+              >
+                <StarLogo variant="dark" size="sm" priority />
+              </div>
+            </Link>
+          </div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Center: Desktop Navigation Links (Spaced with ample room, zero overflow) */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-8 shrink-0">
             {navLinks.map((link) => {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(link.href);
 
-              if (link.isDropdown) {
-                return (
-                  <div
-                    key={link.name}
-                    className="relative group"
-                    onMouseEnter={() => setSegmentsDropdownOpen(true)}
-                    onMouseLeave={() => setSegmentsDropdownOpen(false)}
-                  >
-                    <Link
-                      href={link.href}
-                      className={`inline-flex items-center gap-1.5 text-[13.5px] font-medium tracking-wide transition-colors ${
-                        isActive
-                          ? "text-[#1E1A17] font-semibold"
-                          : "text-[#3D3732] hover:text-[#97692D]"
-                      }`}
-                    >
-                      <span>{link.name}</span>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          segmentsDropdownOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </Link>
-
-                    {/* Dropdown Menu */}
-                    <div
-                      className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-80 transition-all duration-200 ${
-                        segmentsDropdownOpen
-                          ? "opacity-100 visible translate-y-0"
-                          : "opacity-0 invisible -translate-y-2 pointer-events-none"
-                      }`}
-                    >
-                      <div className="bg-[#FAF5F1] border border-[#E5DDD3] shadow-xl rounded-xl p-3 divide-y divide-[#E5DDD3]/60">
-                        <div className="pb-2 px-2">
-                          <Link
-                            href="/segments"
-                            className="text-xs font-semibold uppercase tracking-wider text-[#97692D] hover:underline flex items-center justify-between"
-                          >
-                            <span>Explore All 7 Segments</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </Link>
-                        </div>
-                        <div className="pt-2 space-y-1">
-                          {SEGMENTS.map((seg) => (
-                            <Link
-                              key={seg.id}
-                              href={seg.link}
-                              className="flex items-center gap-3 p-2 rounded-lg hover:bg-[#EFE8DE] transition-colors group/item"
-                            >
-                              <div className="w-8 h-8 rounded-md bg-white border border-[#E5DDD3] flex items-center justify-center shrink-0">
-                                {getSegmentIcon(seg.id)}
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs font-medium text-[#1E1A17] group-hover/item:text-[#97692D] transition-colors">
-                                  {seg.title}
-                                </div>
-                                <div className="text-[11px] text-[#5C5550] truncate">
-                                  {seg.subtitle}
-                                </div>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-
               return (
-                <div key={link.name} className="relative py-1">
+                <div key={link.name} className="relative py-1 flex items-center">
                   <Link
                     href={link.href}
-                    className={`text-[13.5px] font-medium tracking-wide transition-colors ${
-                      isActive
-                        ? "text-[#1E1A17] font-semibold"
-                        : "text-[#3D3732] hover:text-[#97692D]"
+                    onClick={closeMenus}
+                    className={`text-[11px] xl:text-xs tracking-wider uppercase font-bold transition-colors duration-300 whitespace-nowrap ${
+                      scrolled
+                        ? isActive
+                          ? "text-[#8C5E2D] font-extrabold"
+                          : "text-[#1E1A17]/80 hover:text-[#8C5E2D]"
+                        : isActive
+                          ? "text-white font-extrabold"
+                          : "text-white/90 hover:text-white"
                     }`}
                   >
                     {link.name}
                   </Link>
-                  {/* Subtle gold underline for active item (as seen under "Home" in reference) */}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#97692D] rounded-full" />
+                    <span
+                      className={`absolute -bottom-1 left-0 right-0 h-[2px] rounded-full transition-colors duration-300 ${
+                        scrolled ? "bg-[#8C5E2D] shadow-xs" : "bg-white shadow-md"
+                      }`}
+                    />
                   )}
                 </div>
               );
             })}
           </nav>
 
-          {/* Mobile Menu Button (Hamburger) */}
-          <div className="flex items-center lg:hidden">
+          {/* Right: Action Pill Button (Inquire / Book Tour) */}
+          <div className="hidden lg:flex items-center shrink-0">
+            {onOpenEnquiry ? (
+              <button
+                onClick={onOpenEnquiry}
+                className={`group inline-flex items-center gap-1.5 text-[11px] xl:text-xs tracking-wider uppercase font-bold px-5 py-2.5 rounded-full transition-all duration-300 cursor-pointer shrink-0 ${
+                  scrolled
+                    ? "bg-[#1E1A17] text-white hover:bg-[#8C5E2D] shadow-xs hover:shadow-md"
+                    : "bg-white text-zinc-950 hover:bg-zinc-100 shadow-xl hover:scale-105 active:scale-95"
+                }`}
+              >
+                <span>Inquire</span>
+                <ArrowRight
+                  className={`w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 ${
+                    scrolled ? "text-white" : "text-zinc-950"
+                  }`}
+                />
+              </button>
+            ) : (
+              <Link
+                href="/contact"
+                onClick={closeMenus}
+                className={`group inline-flex items-center gap-1.5 text-[11px] xl:text-xs tracking-wider uppercase font-bold px-5 py-2.5 rounded-full transition-all duration-300 shrink-0 ${
+                  scrolled
+                    ? "bg-[#1E1A17] text-white hover:bg-[#8C5E2D] shadow-xs hover:shadow-md"
+                    : "bg-white text-zinc-950 hover:bg-zinc-100 shadow-xl hover:scale-105 active:scale-95"
+                }`}
+              >
+                <span>Book Tour</span>
+                <ArrowRight
+                  className={`w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 ${
+                    scrolled ? "text-white" : "text-zinc-950"
+                  }`}
+                />
+              </Link>
+            )}
+          </div>
+
+          {/* Mobile Right: Quick Action Pill (Tablet/Desktop) & Hamburger Toggle Button */}
+          <div className="flex items-center gap-2 lg:hidden shrink-0">
+            {onOpenEnquiry ? (
+              <button
+                onClick={onOpenEnquiry}
+                className={`hidden sm:inline-flex text-[10px] sm:text-xs uppercase font-bold tracking-wider px-3.5 sm:px-4 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  scrolled
+                    ? "bg-[#1E1A17] text-white hover:bg-[#8C5E2D] shadow-xs"
+                    : "bg-white text-zinc-950 hover:bg-zinc-100 shadow-md"
+                }`}
+              >
+                Inquire
+              </button>
+            ) : (
+              <Link
+                href="/contact"
+                className={`hidden sm:inline-flex text-[10px] sm:text-xs uppercase font-bold tracking-wider px-3.5 sm:px-4 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  scrolled
+                    ? "bg-[#1E1A17] text-white hover:bg-[#8C5E2D] shadow-xs"
+                    : "bg-white text-zinc-950 hover:bg-zinc-100 shadow-md"
+                }`}
+              >
+                Inquire
+              </Link>
+            )}
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#1E1A17] hover:text-[#97692D] transition-colors rounded-lg focus:outline-none"
+              className={`p-2 rounded-full transition-colors duration-200 focus:outline-none cursor-pointer ${
+                scrolled
+                  ? "text-[#1E1A17] hover:text-[#8C5E2D] hover:bg-stone-100/70"
+                  : "text-white hover:bg-white/15"
+              }`}
               aria-label="Toggle Navigation"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 stroke-[1.75]" />
+                <X className="w-5 h-5 stroke-[2.2]" />
               ) : (
-                <Menu className="w-6 h-6 stroke-[1.75]" />
+                <Menu className="w-5 h-5 stroke-[2.2]" />
               )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer (Matches reference 2 clean aesthetic) */}
+      {/* Mobile Drawer with Liquid Glassmorphism */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-[60px] bg-[#FAF5F1] border-b border-[#E5DDD3] shadow-2xl transition-all duration-300 max-h-[calc(100vh-60px)] overflow-y-auto ${
+        className={`lg:hidden fixed inset-x-3 sm:inset-x-6 ${
+          scrolled ? "top-[64px]" : "top-[74px]"
+        } backdrop-blur-3xl bg-white/98 border border-stone-200/80 shadow-[0_25px_60px_rgba(0,0,0,0.18)] rounded-2xl transition-all duration-300 max-h-[calc(100vh-85px)] overflow-y-auto z-50 pointer-events-auto ${
           mobileMenuOpen
             ? "opacity-100 visible translate-y-0"
-            : "opacity-0 invisible -translate-y-4 pointer-events-none"
+            : "opacity-0 invisible -translate-y-3 pointer-events-none"
         }`}
       >
-        <div className="p-6 space-y-5">
+        <div className="p-6 space-y-6">
           <div className="space-y-3">
             {navLinks.map((link) => {
               const isActive =
@@ -203,41 +211,15 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
                   ? pathname === "/"
                   : pathname.startsWith(link.href);
 
-              if (link.isDropdown) {
-                return (
-                  <div key={link.name} className="pt-2">
-                    <Link
-                      href="/segments"
-                      className="text-base font-serif font-medium text-[#1E1A17] flex items-center justify-between py-1"
-                    >
-                      <span>Our Segments</span>
-                      <ArrowRight className="w-4 h-4 text-[#97692D]" />
-                    </Link>
-                    <div className="mt-2 pl-3 border-l-2 border-[#97692D]/30 space-y-2">
-                      {SEGMENTS.map((seg) => (
-                        <Link
-                          key={seg.id}
-                          href={seg.link}
-                          className="flex items-center gap-2.5 text-xs text-[#5C5550] hover:text-[#97692D] py-1"
-                        >
-                          {getSegmentIcon(seg.id)}
-                          <span>{seg.title}</span>
-                          <span className="text-[10px] text-stone-400">({seg.subtitle})</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                );
-              }
-
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`block text-base font-serif font-medium py-1.5 transition-colors border-b border-[#E5DDD3]/40 ${
+                  onClick={closeMenus}
+                  className={`block text-sm uppercase tracking-wide font-bold py-2.5 transition-colors border-b border-stone-100 ${
                     isActive
-                      ? "text-[#97692D] font-semibold"
-                      : "text-[#1E1A17] hover:text-[#97692D]"
+                      ? "text-[#8C5E2D] font-bold"
+                      : "text-stone-700 hover:text-[#1E1A17]"
                   }`}
                 >
                   {link.name}
@@ -246,18 +228,18 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
             })}
           </div>
 
-          {/* Quick Action Button */}
+          {/* Quick Action Button on Mobile */}
           {onOpenEnquiry && (
             <div className="pt-2">
               <button
                 onClick={() => {
-                  setMobileMenuOpen(false);
+                  closeMenus();
                   onOpenEnquiry();
                 }}
-                className="w-full py-3 bg-[#97692D] text-white rounded text-sm font-medium tracking-wide flex items-center justify-center gap-2 hover:bg-[#7D521F] transition-colors"
+                className="w-full py-3.5 bg-[#1E1A17] text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#8C5E2D] transition-colors shadow-lg cursor-pointer flex items-center justify-center gap-2"
               >
-                <span>Talk to Us</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Inquire Direct</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           )}
@@ -266,4 +248,3 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
     </header>
   );
 }
-

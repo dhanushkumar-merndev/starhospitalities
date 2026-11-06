@@ -5,27 +5,47 @@
     --brand-cream: #FAF5F1;
     --brand-sand: #F3EEEA;
     --brand-warm: #EFE8DE;
-    --brand-bronze: #97692D;
-    --brand-bronze-hover: #7D521F;
-    --brand-bronze-light: #B7874C;
-    --brand-dark: #1E1A17;
-    --brand-stone: #5C5550;
-    --brand-border: #E5DDD3;
+    --brand-bronze: #C59B58;
+    --brand-bronze-hover: #A88140;
+    --brand-bronze-light: #DFBE82;
+    --brand-dark: #090C10;
+    --brand-surface: #0E131A;
+    --brand-surface-light: #161C24;
+    --brand-stone: #8E9BA8;
+    --brand-border: rgba(255, 255, 255, 0.15);
+
+    /* Backwards-compatibility font variable mapping */
+    --font-roboto: var(--font-sans);
+    --font-roboto-serif: var(--font-serif);
+    --font-display: var(--font-serif);
   }
 
   body {
-    background-color: var(--brand-cream);
-    color: var(--brand-dark);
-    font-family: var(--font-roboto), Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #FAF5F1;
+    color: #1E1A17;
+    font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     overflow-x: hidden;
+    letter-spacing: -0.01em;
   }
 
-  h1, h2, h3, h4, .font-serif {
-    font-family: var(--font-roboto-serif), var(--font-roboto), Roboto, Georgia, serif;
+  h1, h2, h3, h4, .font-serif, .font-display {
+    font-family: var(--font-serif), Georgia, serif;
+    letter-spacing: -0.025em;
+  }
+
+  /* Premium Bold Font utilities */
+  .font-sans-bold {
+    font-family: var(--font-sans), sans-serif;
+    font-weight: 700;
+  }
+
+  .font-display-bold {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 800;
   }
 }
 
-/* Custom scrollbar for luxury aesthetic */
+/* Custom scrollbar for light luxury aesthetic */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -38,15 +58,164 @@
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #97692D;
+  background: #8C5E2D;
 }
 
-/* Subtle image zoom transition */
+/* Hide scrollbars for horizontal carousels while keeping scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ========================================================================= */
+/* DYNAMIC ISLAND & LIQUID GLASSMORPHISM STYLES                              */
+/* ========================================================================= */
+
+/* Header at top of page (completely transparent / invisible background) */
+.dynamic-island-top {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
+/* Header when scrolled down (Dynamic Island rich white liquid glass capsule) */
+.dynamic-island-scrolled {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(255, 255, 255, 0.88) 100%
+  );
+  backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 16px 40px -10px rgba(0, 0, 0, 0.08),
+    0 4px 12px -2px rgba(0, 0, 0, 0.03),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Light Glassmorphic Card Utilities */
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(229, 221, 211, 0.8);
+  box-shadow: 
+    0 12px 32px -8px rgba(0, 0, 0, 0.04),
+    0 2px 8px -2px rgba(0, 0, 0, 0.02),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.glass-pill-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* ========================================================================= */
+/* PURE GLASSMORPHISM (User spec: 0px fill, 100px blur, no borders)           */
+/* ========================================================================= */
+.glass-blur-100 {
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: blur(100px) saturate(180%);
+  -webkit-backdrop-filter: blur(100px) saturate(180%);
+  border: none !important;
+  box-shadow: none !important;
+}
+.liquid-glass-header-top {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+}
+
+.liquid-glass-header-scrolled {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.90) 100%
+  );
+  backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(102%);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 
+    0 20px 45px -10px rgba(0, 0, 0, 0.12),
+    0 6px 18px -3px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 1);
+}
+
+/* Refined liquid glass architectural dividers */
+.liquid-glass-divider {
+  border-color: rgba(229, 221, 211, 0.5);
+  box-shadow: 1px 0 0 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Dropdown Liquid Glass Container */
+.liquid-glass-dropdown {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.70) 100%
+  );
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 
+    0 20px 50px -10px rgba(0, 0, 0, 0.12),
+    0 10px 20px -5px rgba(0, 0, 0, 0.06),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.glass-panel-subtle {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.30);
+  transform: translateY(-2px);
+}
+
+/* Subtle Architectural Grid Lines matching Reference */
+.border-subtle-white {
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+.border-subtle-white-light {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Image zoom transition */
 .image-zoom-container {
   overflow: hidden;
 }
 .image-zoom-container img {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .image-zoom-container:hover img {
   transform: scale(1.05);
@@ -58,3 +227,35 @@
   stroke-dashoffset: 0;
   transition: all 0.4s ease;
 }
+
+/* Hero Section Up/Down Cinematic Transitions */
+@keyframes heroSlideUpIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSlideDownIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-slide-up {
+  animation: heroSlideUpIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-hero-slide-down {
+  animation: heroSlideDownIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
