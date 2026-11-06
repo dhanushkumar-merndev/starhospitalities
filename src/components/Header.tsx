@@ -47,7 +47,7 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
       >
         <div className="w-full flex items-center justify-between gap-3 sm:gap-6">
           {/* Left: Star Logo with Smooth Light/Dark Crossfade */}
-          <div className="flex items-center shrink-0">
+          <div className="flex items-center shrink-0 translate-y-[1.5px] sm:translate-y-[2.5px]">
             <Link
               href="/"
               className="relative flex items-center h-8 sm:h-9"
@@ -56,16 +56,16 @@ export default function Header({ onOpenEnquiry }: HeaderProps) {
             >
               {/* White Logo (Visible when landed) */}
               <div
-                className={`transition-opacity duration-300 ${
-                  scrolled ? "opacity-0 pointer-events-none absolute" : "opacity-100"
+                className={`transition-opacity duration-300 flex items-center h-full ${
+                  scrolled ? "opacity-0 pointer-events-none absolute inset-0" : "opacity-100"
                 }`}
               >
                 <StarLogo variant="light" size="sm" priority />
               </div>
               {/* Dark Logo (Visible when scrolled Dynamic Island) */}
               <div
-                className={`transition-opacity duration-300 ${
-                  scrolled ? "opacity-100" : "opacity-0 pointer-events-none absolute"
+                className={`transition-opacity duration-300 flex items-center h-full ${
+                  scrolled ? "opacity-100" : "opacity-0 pointer-events-none absolute inset-0"
                 }`}
               >
                 <StarLogo variant="dark" size="sm" priority />

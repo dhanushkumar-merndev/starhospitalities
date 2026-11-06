@@ -33,13 +33,24 @@ img_dark_orig = Image.open(backup_dark)
 c_light = img_light_orig.crop(img_light_orig.getbbox())
 c_dark = img_dark_orig.crop(img_dark_orig.getbbox())
 
+# Symmetrically pad vertical space to ensure text is 100% optically centered
+# Dark: top space 153, bottom space 225 -> add 72px padding to top
+pad_dark_top = 72
+canvas_dark = Image.new('RGBA', (c_dark.width, c_dark.height + pad_dark_top), (0, 0, 0, 0))
+canvas_dark.paste(c_dark, (0, pad_dark_top), c_dark)
+
+# Light: top space 207, bottom space 210 -> add 3px padding to top
+pad_light_top = 3
+canvas_light = Image.new('RGBA', (c_light.width, c_light.height + pad_light_top), (0, 0, 0, 0))
+canvas_light.paste(c_light, (0, pad_light_top), c_light)
+
 # Target web resolution: width 2400 (3x retina for 800px display)
 target_w = 2400
-h_l = int(c_light.height * (target_w / c_light.width))
-h_d = int(c_dark.height * (target_w / c_dark.width))
+h_l = int(canvas_light.height * (target_w / canvas_light.width))
+h_d = int(canvas_dark.height * (target_w / canvas_dark.width))
 
-scaled_light = c_light.resize((target_w, h_l), Image.Resampling.LANCZOS)
-scaled_dark = c_dark.resize((target_w, h_d), Image.Resampling.LANCZOS)
+scaled_light = canvas_light.resize((target_w, h_l), Image.Resampling.LANCZOS)
+scaled_dark = canvas_dark.resize((target_w, h_d), Image.Resampling.LANCZOS)
 
 # Save tight web-ready logos
 scaled_light.save(os.path.join(LOGO_DIR, 'logo.png'), optimize=True)
